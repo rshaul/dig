@@ -1,0 +1,41 @@
+/* BODY */
+
+#content {
+	padding-top: 4em;
+	height: 512px;
+	text-align: center;
+	background: url(lock.png) no-repeat center 10px;
+}
+
+#blurb {
+	text-align: left;
+	width: 375px;
+	line-height: 1.5em;
+	margin: 2px 0 4em 210px;
+}
+
+.button {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	width: 175px;
+	height: 30px;
+	line-height: 30px;
+	background: #8ab28f;
+	text-align: center;
+	border: 1px solid black;
+	color: #000;
+}
+
+#learn-more {
+	margin-right: 1em;
+}
+
+#register-now #caption {
+	font-weight: bold;
+}
+
+.button #arrow {
+	position: absolute;
+	right: 10px;
+}

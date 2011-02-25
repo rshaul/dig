@@ -1,0 +1,33 @@
+#register .item {
+	padding-bottom: 3px;
+}
+
+#register label {
+	width: 100px;
+	float: left;
+}
+
+#register input {
+	clear: right;
+}
+
+#submit {
+	margin-top: 1em;
+	margin-left: 100px;
+}
+
+#content {
+	text-align: center;
+}
+
+#register {
+	margin-top: 2em;
+	display: inline-block;
+	width: 300px;
+	text-align: left;
+}
+
+#register input[type=text],
+#register input[type=password] {
+	width: 180px;
+}
