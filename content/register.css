@@ -3,7 +3,7 @@
 }
 
 #register label {
-	width: 100px;
+	width: 120px;
 	float: left;
 }
 
@@ -13,7 +13,7 @@
 
 #submit {
 	margin-top: 1em;
-	margin-left: 100px;
+	margin-left: 120px;
 }
 
 #content {
@@ -23,7 +23,7 @@
 #register {
 	margin-top: 2em;
 	display: inline-block;
-	width: 300px;
+	width: 320px;
 	text-align: left;
 }
 

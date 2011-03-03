@@ -16,6 +16,12 @@ body {
 	margin: 0 auto;
 }
 
+.error {
+	margin-top: 1em;
+	color: red;
+	font-weight: bold;
+}
+
 /* HEADER */
 #header {
 	height: 60px;
@@ -26,7 +32,7 @@ body {
 
 /* LOGIN BOX */
 
-#login {
+#login, #logout {
 	position: absolute;
 	right: 0;
 	margin-top: -3em;
