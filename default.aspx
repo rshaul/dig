@@ -1,7 +1,4 @@
 ﻿<%@ Page Language="C#" CodeFile="default.aspx.cs" Inherits="_default" %>
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" Runat="server">
-	<link href="content/default.css" rel="stylesheet" type="text/css" />
-</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="DynamicBody" Runat="Server">
 
 	<h1>Secure Your Identity</h1>
