@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title>dig - Digital Signature Provider</title>
 	<link href="content/site.css" rel="stylesheet" type="text/css" />
-	<asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+	<link href="content/<%=PageName %>.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="container">
@@ -14,17 +14,24 @@
 			<a href="/" id="logo"><img src="content/logo.png"></a>
 		</div>
 
-		<form action="login.aspx" method="post">
-			<div id="login">
-				<label for="email">Email</label>
-				<input type="text" name="email" id="email">
+		<% if (Login == null) { %>
+			<form action="login.aspx" method="post">
+				<div id="login">
+					<label for="login-email">Email</label>
+					<input type="text" name="e" id="login-email">
 
-				<label for="password">Password</label>
-				<input type="password" name="password" id="password">
+					<label for="login-password">Password</label>
+					<input type="password" name="p" id="login-password">
 
-				<input type="submit" value="Login">
+					<input type="submit" value="Login">
+				</div>
+			</form>
+		<% } else { %>
+			<div id="logout">
+				<%=Login.User.FirstName %> <%=Login.User.LastName %> -
+				<a href="logout.aspx">Logout</a>
 			</div>
-		</form>
+		<% } %>
 
 
 		<div id="content">

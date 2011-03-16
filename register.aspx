@@ -1,32 +1,38 @@
 ﻿<%@ Page Language="C#" CodeFile="register.aspx.cs" Inherits="register" %>
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" Runat="server">
-	<link href="content/register.css" rel="stylesheet" type="text/css" />
-</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="DynamicBody" Runat="Server">
 			<h1>Register</h1>
+
+			<% if (HasError) { %>
+				<div class="error"><%=Error %></div>
+			<% } %>
 
 			<form action="" method="post">
 				<div id="register">
 					<div class="item">
-						<label for="email-reg">Email</label>
-						<input type="text" name="email" id="email-reg">
+						<label for="email">Email</label>
+						<input type="text" value="<%=Email %>" name="email" id="email">
 					</div>
 
 					<div class="item">
-						<label for="password-reg">Password</label>
-						<input type="password" name="password" id="password-reg">
+						<label for="password">Password</label>
+						<input type="password" value="<%=Password %>" name="password" id="password">
+					</div>
+
+					<div class="item">
+						<label for="confirm">Confirm</label>
+						<input type="password" value="<%=Confirm %>" name="confirm" id="confirm" />
 					</div>
 
 
 					<div class="item">
 						<label for="first-name">First Name</label>
-						<input type="text" name="first-name" id="first-name">
+						<input type="text" value="<%=FirstName %>" name="first-name" id="first-name">
 					</div>
 
 
 					<div class="item">
 						<label for="last-name">Last Name</label>
-						<input type="text" name="last-name" id="last-name">
+						<input type="text" value="<%=LastName %>" name="last-name" id="last-name">
 					</div>
 
 
