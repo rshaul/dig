@@ -7,11 +7,11 @@ public partial class login : DigPage
 		base.OnLoad(args);
 
 		if (Request.Form.Count > 0) {
-			string e = Request.Form["e"];
-			string p = Dig.User.Hash(Request.Form["p"]);
+			string email = Request.Form["e"];
+			string password = Dig.User.Hash(Request.Form["p"]);
 
 			User user;
-			if (UserStore.TryGetUser(e, p, out user)) {
+			if (UserStore.TryGetUser(email, password, out user)) {
 				LoginStore.Login(user);
 				Response.Redirect("dashboard.aspx");
 			}

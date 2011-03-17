@@ -1,6 +1,12 @@
 ﻿using System;
 using Dig;
 
+/*
+ * All public facing pages inherit from this
+ * 
+ * Responsible for setting up the Master page
+ * And checking for a login
+ */
 public class DigPage : BasePage
 {
 	protected Login Login { get; private set; }

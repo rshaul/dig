@@ -7,6 +7,13 @@ namespace Dig
 {
 	public class UserStore
 	{
+		public bool TryGetUser(int id, out User user) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				SELECT * FROM users WHERE id = ?id";
+			db.Parameters.Add("id", id);
+			return db.TryGetResult(ConvertResult, out user);
+		}
 		public bool TryGetUser(string email, string hashedPassword, out User user) {
 			Db db = new DigDb();
 			db.CommandText = @"
@@ -36,6 +43,7 @@ namespace Dig
 
 		static User ConvertResult(DbResult result) {
 			User user = new User();
+			user.Id = result.Get<int>("id");
 			user.Email = result.Get<string>("email");
 			user.HashedPassword = result.Get<string>("password");
 			user.FirstName = result.Get<string>("fname");

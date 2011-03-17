@@ -1,14 +1,13 @@
 ﻿<%@ Page Language="C#" CodeFile="generate.aspx.cs" Inherits="generate" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="DynamicBody" Runat="Server">
+<asp:Content ID="Content" ContentPlaceHolderID="DynamicBody" Runat="Server">
 
 	<h1>Your New Key Is...</h1>
 	<div id="key">
-		<%=DigKey %>
+		<%=Key %>
 	</div>
 
 	<div id="another">
-		<a href=""><%=Another %></a>
+		<a href="">Another!</a>
 	</div>
 
 </asp:Content>
-

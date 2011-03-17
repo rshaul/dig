@@ -19,6 +19,9 @@ namespace Dig
 			return cookieRepo.TryGetKeyed("login", out cookie);
 		}
 
+		/*
+		 * Checks the user's cookies to see if they have login information & verifies them
+		 */
 		public bool TryGetLogin(out Login login) {
 			User user;
 			KeyedCookie cookie;
@@ -30,6 +33,9 @@ namespace Dig
 			return false;
 		}
 
+		/*
+		 * Creates & saves the login cookie
+		 */
 		public void Login(User user) {
 			KeyedCookie cookie;
 			if (!TryGetCookie(out cookie)) {
@@ -40,6 +46,9 @@ namespace Dig
 			cookieRepo.Save(cookie);
 		}
 
+		/*
+		 * Deletes the login cookie
+		 */
 		public void Logout() {
 			KeyedCookie cookie;
 			if (TryGetCookie(out cookie)) {

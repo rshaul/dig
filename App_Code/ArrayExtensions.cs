@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-public static class Rand
+public static class ArrayExtensions
 {
 	static Random random = new Random();
 
-	public static T om<T>(T[] a) {
-		return a[random.Next(0, a.Length)];
+	public static T GetRandomElement<T>(this T[] array) {
+		return array[random.Next(0, array.Length)];
 	}
 }
