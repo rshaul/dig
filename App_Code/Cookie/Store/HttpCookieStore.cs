@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-	public class HttpCookieRepository : ICookieRepository
+	public class HttpCookieStore : ICookieStore
 	{
 		HttpRequest Request;
 		HttpResponse Response;
 
-		public HttpCookieRepository(HttpContext context) {
-			Request = context.Request;
-			Response = context.Response;
+		public HttpCookieStore(HttpRequest request, HttpResponse response) {
+			Request = request;
+			Response = response;
 		}
 
 		public bool TryGetKeyed(string name, out KeyedCookie output) {

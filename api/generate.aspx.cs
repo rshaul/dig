@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using Dig;
 
-public partial class api_generate : System.Web.UI.Page
+public partial class api_generate : ApiPage
 {
-
-	protected override void OnLoad(EventArgs e) {
-		base.OnLoad(e);
-
-		KeyGenerator keygen = new KeyGenerator();
-
-		Response.Clear();
-		Response.Write(keygen.Generate());
-		Response.End();
+	public override string GetResponse() {
+		return KeyGenerator.Generate();
 	}
 }

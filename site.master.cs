@@ -5,16 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class site : System.Web.UI.MasterPage
+public partial class site : BaseMaster
 {
 	protected string PageName;
-	protected Login Login;
 
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
 		PageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
-
-		Login.TryGetLogin(out Login);
 	}
 }

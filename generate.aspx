@@ -7,7 +7,7 @@
 	</div>
 
 	<div id="another">
-		<a href="generate.aspx"><%=Another %></a>
+		<a href=""><%=Another %></a>
 	</div>
 
 </asp:Content>

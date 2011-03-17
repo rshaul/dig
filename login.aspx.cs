@@ -1,17 +1,18 @@
 ﻿using System;
+using Dig;
 
-public partial class login : BasePage
+public partial class login : DigPage
 {
 	protected override void OnLoad(EventArgs args) {
 		base.OnLoad(args);
 
 		if (Request.Form.Count > 0) {
 			string e = Request.Form["e"];
-			string p = Request.Form["p"];
+			string p = Dig.User.Hash(Request.Form["p"]);
+
 			User user;
-			if (global::User.TryGetUser(e, p, out user)) {
-				Login login = new Login(user);
-				login.Save();
+			if (UserStore.TryGetUser(e, p, out user)) {
+				LoginStore.Login(user);
 				Response.Redirect("dashboard.aspx");
 			}
 		}
