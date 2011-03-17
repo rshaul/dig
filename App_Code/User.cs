@@ -19,7 +19,7 @@ public class User
 	public static bool TryGetUser(string email, string password, out User user) {
 		Db db = new DigDb();
 		db.CommandText = @"
-			SELECT * FROM users WHERE email = ?email AND password = ?password";
+			SELECT * FROM userinfo WHERE email = ?email AND password = ?password";
 		db.Parameters.Add("email", email);
 		db.Parameters.Add("password", password);
 		return db.TryGetResult(ConvertResult, out user);
@@ -28,13 +28,13 @@ public class User
 	public void Insert() {
 		Db db = new DigDb();
 		db.CommandText = @"
-			INSERT INTO users (email,password,firstname,lastname,birthday)
-			VALUES (?email,?password,?firstname,?lastname,?birthday)";
+			INSERT INTO userinfo (email,password,fname,lname,birthdate)
+			VALUES (?email,?password,?fname,?lname,?birthdate)";
 		db.Parameters.Add("email", Email);
 		db.Parameters.Add("password", Password);
-		db.Parameters.Add("firstname", FirstName);
-		db.Parameters.Add("lastname", LastName);
-		db.Parameters.Add("birthday", Birthday);
+		db.Parameters.Add("fname", FirstName);
+		db.Parameters.Add("lname", LastName);
+		db.Parameters.Add("birthdate", Birthday);
 		db.ExecuteNonQuery();
 	}
 
@@ -42,9 +42,9 @@ public class User
 		User user = new User();
 		user.Email = result.Get<string>("email");
 		user.Password = result.Get<string>("password");
-		user.FirstName = result.Get<string>("firstname");
-		user.LastName = result.Get<string>("lastname");
-		user.Birthday = result.Get<DateTime>("birthday");
+		user.FirstName = result.Get<string>("fname");
+		user.LastName = result.Get<string>("lname");
+		user.Birthday = result.Get<DateTime>("birthdate");
 		return user;
 	}
 

@@ -5,23 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class generate : BasePage
+public partial class generate : LoginPage
 {
-    protected string Username { get; private set; }
-	protected string Code { get; private set; }
+    protected string DigKey { get; private set; }
+	protected string Another { get; private set; }
 
-	const int Width=20;
+	string[] AnotherMessages = {
+		"Another!", "Damn you, more!", "But I want moreeeeee", "More I say!"
+	};
 
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
-		string username = Request["username"];
-		string code = Request["code"];
+		KeyGenerator keygen = new KeyGenerator();
+		DigKey = keygen.Generate();
 
-		if (!string.IsNullOrEmpty(username)) {
-			Code = Encryptor.Encrypt(username);
-		} else if (!string.IsNullOrEmpty(code)) {
-			Username = Encryptor.Decrypt(code);
-		}
+		Another = Rand.om(AnotherMessages);
 	}
 }

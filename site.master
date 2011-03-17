@@ -15,8 +15,8 @@
 		</div>
 
 		<% if (Login == null) { %>
-			<form action="login.aspx" method="post">
-				<div id="login">
+			<div id="login">
+				<form action="login.aspx" method="post">
 					<label for="login-email">Email</label>
 					<input type="text" name="e" id="login-email">
 
@@ -24,11 +24,12 @@
 					<input type="password" name="p" id="login-password">
 
 					<input type="submit" value="Login">
-				</div>
-			</form>
+				</form>
+			</div>
 		<% } else { %>
 			<div id="logout">
 				<%=Login.User.FirstName %> <%=Login.User.LastName %> -
+				<a href="dashboard.aspx">Dashboard</a> -
 				<a href="logout.aspx">Logout</a>
 			</div>
 		<% } %>

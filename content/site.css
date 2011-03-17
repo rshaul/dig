@@ -20,6 +20,8 @@ body {
 	margin-top: 1em;
 	color: red;
 	font-weight: bold;
+	text-align: center;
+	font-size: large;
 }
 
 /* HEADER */
