@@ -34,10 +34,10 @@ public partial class register : DigPage
 
 			// Error check
 			AssertIsEqual(Password, Confirm, "Password does not match");
-			AssertExists(LastName, "Last Name");
-			AssertExists(FirstName, "First Name");
-			AssertExists(Password, "Password");
-			AssertExists(Email, "Email");
+			AssertExists(LastName, "Last Name is required");
+			AssertExists(FirstName, "First Name is required");
+			AssertExists(Password, "Password is required");
+			AssertExists(Email, "Email is required");
 
 			if (!HasError) {
 				// Add to database
@@ -48,8 +48,7 @@ public partial class register : DigPage
 				user.LastName = LastName;
 				user.Birthday = GetBirthday();
 
-				UserStore repo = new UserStore();
-				repo.Insert(ref user);
+				UserStore.Insert(ref user);
 
 				// Login and redirect
 				LoginStore.Login(user);
@@ -64,9 +63,9 @@ public partial class register : DigPage
 		}
 	}
 
-	void AssertExists(string value, string name) {
+	void AssertExists(string value, string error) {
 		if (string.IsNullOrEmpty(value)) {
-			Error = name + " is required";
+			Error = error;
 		}
 	}
 }
