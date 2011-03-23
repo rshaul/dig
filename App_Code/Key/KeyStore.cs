@@ -33,6 +33,22 @@ namespace Dig
 			this.userStore = userStore;
 		}
 
+		public void VoidAll(User user) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				UPDATE `keys` SET valid = 0 WHERE user = ?user";
+			db.Parameters.Add("user", user.Id);
+			db.ExecuteNonQuery();
+		}
+
+		public void Void(Key key) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				UPDATE `keys` SET valid = 0 WHERE code = ?code";
+			db.Parameters.Add("code", key.Code);
+			db.ExecuteNonQuery();
+		}
+
 		bool Exists(string code) {
 			Db db = new DigDb();
 			db.CommandText = @"

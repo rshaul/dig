@@ -10,8 +10,13 @@ public partial class keys : LoginPage
 		base.OnLoad(e);
 
 		string v = Request.QueryString["void"];
-		if (!string.IsNullOrEmpty(v)) {
-
+		if (v == "all") {
+			KeyStore.VoidAll(Login.User);
+		} else if (!string.IsNullOrEmpty(v)) {
+			Key key;
+			if (KeyStore.TryGetKey(v, out key) && key.User.Id == Login.User.Id) {
+				KeyStore.Void(key);
+			}
 		}
 
 		Keys = KeyStore.GetKeysForUser(Login.User);
