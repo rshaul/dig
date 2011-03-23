@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="classmates.aspx.cs" Inherits="subway" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="classmates.aspx.cs" Inherits="classmates" %>
 <html lang="en">
 <head>
 	<meta charset="utf-8">

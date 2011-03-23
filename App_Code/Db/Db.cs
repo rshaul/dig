@@ -26,6 +26,16 @@ using System.Data.Common;
 
 		public delegate T ConvertResult<T>(DbResult result);
 
+		public bool HasResults() {
+			using (DbConnection cn = GetConnection()) {
+				using (DbCommand cd = GetCommand(cn)) {
+					using (DbDataReader dr = cd.ExecuteReader()) {
+						return dr.Read();
+					}
+				}
+			}
+		}
+
 		public bool TryGetResult<T>(ConvertResult<T> convertResult, out T output) {
 			using (DbConnection cn = GetConnection()) {
 				using (DbCommand cd = GetCommand(cn)) {
@@ -56,10 +66,10 @@ using System.Data.Common;
 			return output;
 		}
 
-		public void ExecuteNonQuery() {
+		public int ExecuteNonQuery() {
 			using (DbConnection cn = GetConnection()) {
 				using (DbCommand cd = GetCommand(cn)) {
-					cd.ExecuteNonQuery();
+					return cd.ExecuteNonQuery();
 				}
 			}
 		}

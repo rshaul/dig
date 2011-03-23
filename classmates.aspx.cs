@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 
-public partial class subway : System.Web.UI.Page
+public partial class classmates : System.Web.UI.Page
 {
 	protected bool Sent = false;
 
