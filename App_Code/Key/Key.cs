@@ -9,6 +9,7 @@ namespace Dig
 	{
 		public string Code { get; set; }
 		public User User { get; set; }
+		public DateTime Created { get; set; }
 		public bool Valid { get; set; }
 
 		public string FormatCode() {

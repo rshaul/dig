@@ -12,6 +12,11 @@ public partial class site : BaseMaster
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
-		PageName = System.IO.Path.GetFileNameWithoutExtension(Request.Path);
+		string name = Request.Path;
+		name = name.Replace(".aspx", "");
+		name = name.TrimStart('/');
+		name = name.Replace('/', '_');
+
+		PageName = name;
 	}
 }

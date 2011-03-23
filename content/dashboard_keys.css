@@ -1,0 +1,19 @@
+﻿.invalid {
+	color: #777;
+	text-decoration: line-through;
+}
+
+.key span {
+	display: inline-block;
+	width: 25em;
+}
+
+#voidAll {
+	display: block;
+	margin-top: 1em;
+}
+
+#keys {
+	margin-left: 300px;
+	margin-top: 1em;
+}

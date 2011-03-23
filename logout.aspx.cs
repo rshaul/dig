@@ -7,6 +7,6 @@ public partial class logout : DigPage
 		base.OnLoad(e);
 
 		LoginStore.Logout();
-		Response.Redirect("default.aspx");
+		Response.Redirect("/");
 	}
 }

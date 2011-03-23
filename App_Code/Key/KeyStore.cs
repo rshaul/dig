@@ -60,7 +60,7 @@ namespace Dig
 		void Insert(string code, User user) {
 			Db db = new DigDb();
 			db.CommandText = @"
-				INSERT INTO `keys` (code,user) VALUES (?code,?user)";
+				INSERT INTO `keys` (code,user,valid) VALUES (?code,?user,1)";
 			db.Parameters.Add("code", code);
 			db.Parameters.Add("user", user.Id);
 			db.ExecuteNonQuery();
@@ -77,7 +77,8 @@ namespace Dig
 		public List<Key> GetKeysForUser(User user) {
 			Db db = new DigDb();
 			db.CommandText = @"
-				SELECT * FROM `keys` WHERE user = ?user";
+				SELECT * FROM `keys` WHERE user = ?user
+				ORDER BY created DESC";
 			db.Parameters.Add("user", user.Id);
 			return db.GetResults(ConvertResult);
 		}
@@ -99,7 +100,7 @@ namespace Dig
 		}
 
 		Key ConvertResult(DbResult result) {
-			int id = result.Get<int>("id");
+			int id = result.Get<int>("user");
 			User user;
 			if (!userStore.TryGetUser(id, out user)) {
 				throw new Exception("Unknown user");
@@ -108,7 +109,7 @@ namespace Dig
 			Key key = new Key();
 			key.User = user;
 			key.Code = result.Get<string>("code");
-			//key.Created = result.Get<DateTime>("created");
+			key.Created = result.Get<DateTime>("created");
 			key.Valid = result.Get<int>("valid") == 1;
 			
 			return key;

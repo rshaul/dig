@@ -13,7 +13,7 @@ public partial class login : DigPage
 			User user;
 			if (UserStore.TryGetUser(email, password, out user)) {
 				LoginStore.Login(user);
-				Response.Redirect("dashboard.aspx");
+				Response.Redirect("/dashboard/");
 			}
 		}
 	}
