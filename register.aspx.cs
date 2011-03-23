@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using Dig;
 
-public partial class register : BasePage
+public partial class register : DigPage
 {
 	protected string Error;
 	protected string Email;
@@ -37,7 +33,7 @@ public partial class register : BasePage
 			LastName = Request.Form["last-name"];
 
 			// Error check
-			AssertAreEqual(Password, Confirm, "Password does not match");
+			AssertIsEqual(Password, Confirm, "Password does not match");
 			AssertExists(LastName, "Last Name");
 			AssertExists(FirstName, "First Name");
 			AssertExists(Password, "Password");
@@ -51,17 +47,18 @@ public partial class register : BasePage
 				user.FirstName = FirstName;
 				user.LastName = LastName;
 				user.Birthday = GetBirthday();
-				user.Insert();
+
+				UserStore repo = new UserStore();
+				repo.Insert(ref user);
 
 				// Login and redirect
-				Login login = new Login(user);
-				login.Save();
+				LoginStore.Login(user);
 				Response.Redirect("dashboard.aspx");
 			}
 		}
 	}
 
-	void AssertAreEqual(string v1, string v2, string error) {
+	void AssertIsEqual(string v1, string v2, string error) {
 		if (v1 != v2) {
 			Error = error;
 		}
