@@ -9,7 +9,7 @@ public partial class api_generate : ApiPage
 
 		User user;
 		if (UserStore.TryGetUser(email, password, out user)) {
-			return KeyStore.Generate(user).FormatValue();
+			return KeyStore.Generate(user).FormatCode();
 		} else {
 			return "Error: Invalid login";
 		}

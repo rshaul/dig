@@ -1,0 +1,26 @@
+﻿#header {
+	background: url(classmates_tile.png);
+}
+
+#header img {
+	display: block;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Sans-Serif;
+}
+
+#body {
+	margin: 1em;
+}
+
+input[type=text], input[type=password] {
+	width: 300px;
+}
+
+#learnmore {
+	font-size: smaller;
+	color: #666;
+}

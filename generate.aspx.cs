@@ -8,6 +8,6 @@ public partial class generate : LoginPage
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
-		Key = KeyStore.Generate(Login.User).FormatValue();
+		Key = KeyStore.Generate(Login.User).FormatCode();
 	}
 }

@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Dig
 {
-	class KeyGenerator
+	class CodeGenerator
 	{
-		const int KeyLength = 25;
+		const int Length = 25;
 
-		static char[] KeyTable = {
+		static char[] Table = {
 			'2', '3', '4', '5', '6', '7', '8', '9',
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
 			'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
@@ -18,8 +18,8 @@ namespace Dig
 
 		public static string Generate() {
 			string value = "";
-			for (int i = 0; i < KeyLength; i++) {
-				value += KeyTable.GetRandomElement();
+			for (int i = 0; i < Length; i++) {
+				value += Table.GetRandomElement();
 			}
 			return value;
 		}
@@ -33,37 +33,69 @@ namespace Dig
 			this.userStore = userStore;
 		}
 
-		bool Exists(string key) {
+		public void VoidAll(User user) {
 			Db db = new DigDb();
 			db.CommandText = @"
-				SELECT * FROM `keys` WHERE `key` = ?key";
-			db.Parameters.Add("key", key);
-			Key dummy;
-			return db.TryGetResult(ConvertResult, out dummy);
-		}
-
-		void Insert(Key key) {
-			Db db = new DigDb();
-			db.CommandText = @"
-				INSERT INTO `keys` (`key`,user) VALUES (?key,?user)";
-			db.Parameters.Add("key", key.Value);
-			db.Parameters.Add("user", key.User.Id);
+				UPDATE `keys` SET valid = 0 WHERE user = ?user";
+			db.Parameters.Add("user", user.Id);
 			db.ExecuteNonQuery();
 		}
 
+		public void Void(Key key) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				UPDATE `keys` SET valid = 0 WHERE code = ?code";
+			db.Parameters.Add("code", key.Code);
+			db.ExecuteNonQuery();
+		}
+
+		bool Exists(string code) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				SELECT * FROM `keys` WHERE code = ?code";
+			db.Parameters.Add("code", code);
+			return db.HasResults();
+		}
+
+		void Insert(string code, User user) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				INSERT INTO `keys` (code,user) VALUES (?code,?user)";
+			db.Parameters.Add("code", code);
+			db.Parameters.Add("user", user.Id);
+			db.ExecuteNonQuery();
+		}
+
+		public bool TryGetKey(string code, out Key key) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				SELECT * FROM `keys` WHERE code = ?code";
+			db.Parameters.Add("code", code);
+			return db.TryGetResult(ConvertResult, out key);
+		}
+
+		public List<Key> GetKeysForUser(User user) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				SELECT * FROM `keys` WHERE user = ?user";
+			db.Parameters.Add("user", user.Id);
+			return db.GetResults(ConvertResult);
+		}
+
 		public Key Generate(User user) {
-			string value;
+			string code;
 			do {
-				value = KeyGenerator.Generate();
-			} while (Exists(value));
+				code = CodeGenerator.Generate();
+			} while (Exists(code));
 
-			Key key = new Key();
-			key.Value = value;
-			key.User = user;
+			Insert(code, user);
 
-			Insert(key);
-
-			return key;
+			Key key;
+			if (TryGetKey(code, out key)) {
+				return key;
+			} else {
+				throw new Exception("Error selecting generated code");
+			}
 		}
 
 		Key ConvertResult(DbResult result) {
@@ -75,9 +107,9 @@ namespace Dig
 
 			Key key = new Key();
 			key.User = user;
-			key.Value = result.Get<string>("key");
-			key.Created = result.Get<DateTime>("created");
-			key.Used = result.Get<int>("used") == 1;
+			key.Code = result.Get<string>("code");
+			//key.Created = result.Get<DateTime>("created");
+			key.Valid = result.Get<int>("valid") == 1;
 			
 			return key;
 		}
