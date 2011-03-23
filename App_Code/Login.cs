@@ -23,11 +23,15 @@ public class Login
 
 	public static bool TryGetLogin(out Login login) {
 		HttpCookieRepository repo = new HttpCookieRepository(HttpContext.Current);
-		User user;
 		KeyedCookie cookie;
-		if (repo.TryGetKeyed("login", out cookie) && User.TryGetUser(cookie.Values["email"], cookie.Values["password"], out user)) {
-			login = new Login(user);
-			return true;
+		if (repo.TryGetKeyed("login", out cookie)) {
+			string email = cookie.Values["email"];
+			string password = cookie.Values["password"];
+			User user;
+			if (User.TryGetUser(email, password, out user)) {
+				login = new Login(user);
+				return true;
+			}
 		}
 		login = null;
 		return false;
