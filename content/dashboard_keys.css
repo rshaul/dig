@@ -1,19 +1,19 @@
-﻿.invalid-key {
+﻿.code {
+	font-family: monospace;
+	font-size: larger;
+}
+
+.void {
+	margin-left: 1em;
+}
+
+#invalid-keys .key {
+	padding: 2px;
 	color: #777;
 	text-decoration: line-through;
 }
 
-.valid-key span {
-	display: inline-block;
-	width: 25em;
-}
-
-#voidAll {
-	display: block;
-	margin-top: 1em;
-}
-
-#keys {
+.sub-nav, #valid-keys, #invalid-keys {
 	margin-left: 300px;
 	margin-top: 1em;
 }

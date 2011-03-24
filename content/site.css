@@ -8,12 +8,13 @@ img {
 
 body {
 	font-family: sans-serif;
+	overflow: scroll;
 }
 
 #container {
 	position: relative;
 	width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 1em auto;
 }
 
 .error {

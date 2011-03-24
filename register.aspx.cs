@@ -52,7 +52,7 @@ public partial class register : DigPage
 
 				// Login and redirect
 				LoginStore.Login(user);
-				Response.Redirect("/dashboard/");
+				Response.Redirect(Urls.AfterLogin());
 			}
 		}
 	}

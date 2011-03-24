@@ -3,7 +3,6 @@
 	<h1>Dashboard</h1>
 
 	<ul>
-		<li><a href="generate.aspx">Generate New Key</a></li>
-		<li><a href="keys.aspx">Key Chain</a></li>
+		<li><a href="<%:Urls.KeyChain() %>">Key Chain</a></li>
 	</ul>
 </asp:Content>

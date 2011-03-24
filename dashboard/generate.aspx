@@ -6,8 +6,8 @@
 		<%=Key %>
 	</div>
 
-	<div id="another">
-		<a href="">Another!</a>
+	<div id="back">
+		<a href="<%:Urls.KeyChain() %>">Back</a>
 	</div>
 
 </asp:Content>

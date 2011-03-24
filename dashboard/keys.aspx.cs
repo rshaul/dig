@@ -4,11 +4,19 @@ using System.Collections.Generic;
 
 public partial class keys : LoginPage
 {
+	protected bool ShowOld { get; private set; }
 	protected List<Key> ValidKeys { get; private set; }
 	protected List<Key> InvalidKeys { get; private set; }
 
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
+
+		ShowOld = Request.QueryString["old"] == "true";
+
+		string generate = Request.QueryString["generate"];
+		if (generate == "true") {
+			KeyStore.Generate(Login.User);
+		}
 
 		string v = Request.QueryString["void"];
 		if (v == "all") {
