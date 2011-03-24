@@ -3,14 +3,16 @@
 	<h1>Key Chain</h1>
 
 	<div id="keys">
-		<% foreach (Key key in Keys) { %>
-			<div class="key">
-				<% if (key.Valid) { %>
-					<span class="valid"><%:key.FormatCode() %></span>
-					<a href="keys.aspx?void=<%:key.Code %>" class="void">Void</a>
-				<% }  else { %>
-					<span class="invalid"><%:key.FormatCode() %></span>
-				<% } %>
+		<% foreach (Key key in ValidKeys) { %>
+			<div class="valid-key">
+				<span><%:key.FormatCode() %></span>
+				<a href="keys.aspx?void=<%:key.Code %>" class="void">Void</a>
+			</div>
+		<% } %>
+
+		<% foreach (Key key in InvalidKeys) { %>
+			<div class="invalid-key">
+				<span><%:key.FormatCode() %></span>
 			</div>
 		<% } %>
 

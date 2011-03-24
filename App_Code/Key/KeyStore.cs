@@ -77,7 +77,8 @@ namespace Dig
 		public List<Key> GetKeysForUser(User user) {
 			Db db = new DigDb();
 			db.CommandText = @"
-				SELECT * FROM `keys` WHERE user = ?user
+				SELECT * FROM `keys`
+				WHERE user = ?user
 				ORDER BY created DESC";
 			db.Parameters.Add("user", user.Id);
 			return db.GetResults(ConvertResult);

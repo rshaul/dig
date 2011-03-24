@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public partial class keys : LoginPage
 {
-	protected List<Key> Keys { get; private set; }
+	protected List<Key> ValidKeys { get; private set; }
+	protected List<Key> InvalidKeys { get; private set; }
 
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
@@ -19,6 +20,8 @@ public partial class keys : LoginPage
 			}
 		}
 
-		Keys = KeyStore.GetKeysForUser(Login.User);
+		List<Key> keys = KeyStore.GetKeysForUser(Login.User);
+		ValidKeys = keys.Where(k => k.Valid);
+		InvalidKeys = keys.Where(k => !k.Valid);
 	}
 }
