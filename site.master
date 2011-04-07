@@ -6,6 +6,7 @@
 	<title>dig - Digital Signature Provider</title>
 	<link href="/content/site.css" rel="stylesheet" type="text/css" />
 	<link href="/content/<%=PageName %>.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 </head>
 <body>
 	<div id="container">

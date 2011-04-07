@@ -47,6 +47,8 @@ namespace Dig
 				UPDATE `keys` SET valid = 0 WHERE code = ?code";
 			db.Parameters.Add("code", key.Code);
 			db.ExecuteNonQuery();
+
+			Updates.AddUpdate(key.User.Email);
 		}
 
 		bool Exists(string code) {
@@ -64,6 +66,8 @@ namespace Dig
 			db.Parameters.Add("code", code);
 			db.Parameters.Add("user", user.Id);
 			db.ExecuteNonQuery();
+
+			Updates.AddUpdate(user.Email);
 		}
 
 		public bool TryGetKey(string code, out Key key) {
@@ -82,6 +86,39 @@ namespace Dig
 				ORDER BY created DESC";
 			db.Parameters.Add("user", user.Id);
 			return db.GetResults(ConvertResult);
+		}
+
+		public bool Verify(string email, string firstname, string lastname, string code) {
+			if (code == null) return false;
+			code = code.Replace("-", "");
+
+			if (string.IsNullOrEmpty(email)) {
+				if (string.IsNullOrEmpty(firstname) || string.IsNullOrEmpty(lastname)) return false;
+			}
+			if (string.IsNullOrEmpty(firstname) != string.IsNullOrEmpty(lastname)) return false;
+
+			Db db = new DigDb();
+			db.CommandText = @"
+				UPDATE `keys` k
+				INNER JOIN users u ON k.user = u.id
+				SET k.valid = 0 WHERE k.code = ?code AND k.valid = 1 ";
+			db.Parameters.Add("code", code);
+
+			if (!string.IsNullOrEmpty(firstname) && !string.IsNullOrEmpty(lastname)) {
+				db.CommandText += " AND u.fname = ?fname AND u.lname = ?lname ";
+				db.Parameters.Add("fname", firstname);
+				db.Parameters.Add("lname", lastname);
+			}
+			if (!string.IsNullOrEmpty(email)) {
+				db.CommandText += " AND u.email = ?email ";
+				db.Parameters.Add("email", email);
+			}
+
+			bool verified = db.ExecuteNonQuery() > 0;
+
+			if (verified) Updates.AddUpdate(email);
+
+			return verified;
 		}
 
 		public Key Generate(User user) {

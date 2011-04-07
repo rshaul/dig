@@ -11,6 +11,8 @@ public partial class keys : LoginPage
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
+		Updates.Clear(Login.User.Email);
+
 		ShowOld = Request.QueryString["old"] == "true";
 
 		string generate = Request.QueryString["generate"];

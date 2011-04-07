@@ -51,11 +51,5 @@ namespace Dig
 			user.Birthday = result.Get<DateTime>("birthdate");
 			return user;
 		}
-
-		public void Update() {
-		}
-
-		public void Delete() {
-		}
 	}
 }

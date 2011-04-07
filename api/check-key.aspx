@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" CodeFile="check-key.aspx.cs" Inherits="api_check_key" %>
