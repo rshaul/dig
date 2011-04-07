@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public partial class keys : LoginPage
 {
-	protected bool ShowOld { get; private set; }
 	protected List<Key> ValidKeys { get; private set; }
 	protected List<Key> InvalidKeys { get; private set; }
 
@@ -13,8 +12,7 @@ public partial class keys : LoginPage
 
 		Updates.Clear(Login.User.Email);
 
-		ShowOld = Request.QueryString["old"] == "true";
-
+		/*
 		string generate = Request.QueryString["generate"];
 		if (generate == "true") {
 			KeyStore.Generate(Login.User);
@@ -25,10 +23,11 @@ public partial class keys : LoginPage
 			KeyStore.VoidAll(Login.User);
 		} else if (!string.IsNullOrEmpty(v)) {
 			Key key;
-			if (KeyStore.TryGetKey(v, out key) && key.User.Id == Login.User.Id) {
+			if (KeyStore.TryGetKey(v, Login.User.Email, out key)) {
 				KeyStore.Void(key);
 			}
 		}
+		*/
 
 		List<Key> keys = KeyStore.GetKeysForUser(Login.User);
 		ValidKeys = keys.Where(k => k.Valid);

@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class dashboard : LoginPage
+public partial class download : DigPage
 {
+	protected override void OnLoad(EventArgs e) {
+		base.OnLoad(e);
+	}
 }

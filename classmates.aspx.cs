@@ -13,8 +13,9 @@ public partial class classmates : System.Web.UI.Page
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
-		const string To = "terandle@gmail.com";
+		//const string To = "terandle@gmail.com";
 		//const string To = "willraus@sbcglobal.net";
+		const string To = "jrodingtonesquire@gmail.com";
 
 		Emailer emailer = new GmailEmailer();
 

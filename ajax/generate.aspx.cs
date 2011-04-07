@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
-/*
- * All pages that need a logged in user inherit from this
- */
-public class LoginPage : DigPage
+public partial class ajax_generate : AjaxPage
 {
 	protected override void OnLoad(EventArgs e) {
 		base.OnLoad(e);
 
-		if (Login == null) {
-			Response.Redirect("/login.aspx");
+		if (Login != null) {
+			KeyStore.Generate(Login.User);
 		}
 	}
 }

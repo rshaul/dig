@@ -48,7 +48,7 @@ namespace Dig
 			db.Parameters.Add("code", key.Code);
 			db.ExecuteNonQuery();
 
-			Updates.AddUpdate(key.User.Email);
+			Updates.AddUpdate(new VoidUpdate(key.User.Email, key.Code));
 		}
 
 		bool Exists(string code) {
@@ -67,7 +67,7 @@ namespace Dig
 			db.Parameters.Add("user", user.Id);
 			db.ExecuteNonQuery();
 
-			Updates.AddUpdate(user.Email);
+			Updates.AddUpdate(new GenerateUpdate(user.Email, code));
 		}
 
 		public bool TryGetKey(string code, out Key key) {
@@ -75,6 +75,17 @@ namespace Dig
 			db.CommandText = @"
 				SELECT * FROM `keys` WHERE code = ?code";
 			db.Parameters.Add("code", code);
+			return db.TryGetResult(ConvertResult, out key);
+		}
+
+		public bool TryGetKey(string code, string email, out Key key) {
+			Db db = new DigDb();
+			db.CommandText = @"
+				SELECT * FROM `keys` k
+				INNER JOIN users u ON k.user = u.id
+				WHERE k.code = ?code AND u.email = ?email";
+			db.Parameters.Add("code", code);
+			db.Parameters.Add("email", email);
 			return db.TryGetResult(ConvertResult, out key);
 		}
 
@@ -116,7 +127,7 @@ namespace Dig
 
 			bool verified = db.ExecuteNonQuery() > 0;
 
-			if (verified) Updates.AddUpdate(email);
+			if (verified) Updates.AddUpdate(new VoidUpdate(email, code));
 
 			return verified;
 		}

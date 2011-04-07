@@ -9,10 +9,12 @@
 		</div>
 	</div>
 
-	<div id="movie"></div>
+	<div id="movie">
+		<iframe title="YouTube video player" width="640" height="510" src="http://www.youtube.com/embed/l6_lUby_-DU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+	</div>
 
 	<div id="buttons">
-		<a href="javascript:ShowMovie();" id="learn-more" class="button">
+		<a href="javascript:ToggleMovie();" id="learn-more" class="button">
 			<span id="caption">See How</span>
 			<span id="arrow">&gt;</span>
 		</a>
@@ -26,10 +28,16 @@
 	<script type="text/javascript">
 		document.getElementById("email").focus();
 
-		function ShowMovie() {
-			$("#text").hide();
-			$("#movie").show();
-			$("#movie").html('<iframe title="YouTube video player" width="640" height="510" src="http://www.youtube.com/embed/l6_lUby_-DU?rel=0&autostart=1&showinfo=0" frameborder="0" allowfullscreen></iframe>');
+		var movieVisible = false;
+		function ToggleMovie() {
+			if (movieVisible) {
+				$("#text").slideDown(300);
+				$("#movie").slideUp(300);
+			} else {
+				$("#text").slideUp(300);
+				$("#movie").slideDown(300);
+			}
+			movieVisible = !movieVisible;
 		}
 	</script>
 

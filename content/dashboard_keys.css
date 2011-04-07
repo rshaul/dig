@@ -13,7 +13,7 @@
 	text-decoration: line-through;
 }
 
-.sub-nav, #valid-keys, #invalid-keys {
+h2#oldKeys, .sub-nav, #valid-keys, #invalid-keys {
 	margin-left: 300px;
 	margin-top: 1em;
 }
