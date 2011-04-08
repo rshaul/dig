@@ -16,11 +16,18 @@
 	<div id="buttons">
 		<a href="javascript:ToggleMovie();" id="learn-more" class="button">
 			<span id="caption">See How</span>
-			<span id="arrow">&gt;</span>
+			<span id="arrow">+</span>
 		</a>
 
 		<a href="register.aspx" id="register-now" class="button">
 			<span id="caption">Register Now</span>
+			<span id="arrow">&gt;</span>
+		</a>
+	</div>
+
+	<div id="not-convinced">
+		<a href="brute.aspx" id="not-conviced" class="button">
+			<span id="caption">Not Conviced?</span>
 			<span id="arrow">&gt;</span>
 		</a>
 	</div>
@@ -33,9 +40,11 @@
 			if (movieVisible) {
 				$("#text").slideDown(300);
 				$("#movie").slideUp(300);
+				$("#not-convinced").hide();
 			} else {
 				$("#text").slideUp(300);
 				$("#movie").slideDown(300);
+				$("#not-convinced").show();
 			}
 			movieVisible = !movieVisible;
 		}

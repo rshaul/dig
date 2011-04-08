@@ -1,0 +1,17 @@
+﻿#attempt {
+	display: none;
+}
+
+h1 {
+	margin-bottom: 1em;
+}
+
+#attempt, #who {
+	margin-left: 225px;
+	margin-bottom: 1em;
+}
+
+#attempt_key {
+	font-family: monospace;
+	font-size: larger;
+}

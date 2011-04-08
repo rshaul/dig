@@ -22,6 +22,10 @@
 	margin: 20px 0;
 }
 
+#buttons {
+	margin-bottom: 1em;
+}
+
 .button {
 	position: relative;
 	display: inline-block;
@@ -46,4 +50,8 @@
 .button #arrow {
 	position: absolute;
 	right: 10px;
+}
+
+#not-convinced {
+	display: none;
 }
