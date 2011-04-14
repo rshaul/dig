@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" CodeFile="brute.aspx.cs" Inherits="brute" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="DynamicBody" Runat="Server">
-	<h1>Brute Force Someone In Our System</h1>
+	<h1>Brute Force Us</h1>
 
 	<table id="who">
 		<tr>
