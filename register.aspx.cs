@@ -54,6 +54,12 @@ public partial class register : DigPage
 				LoginStore.Login(user);
 				Response.Redirect("/download.aspx");
 			}
+		} else {
+			Email = "ryan.shaul@gmail.com";
+			FirstName = "Ryan";
+			LastName = "Shaul";
+			Password = "asdf";
+			Confirm = "asdf";
 		}
 	}
 

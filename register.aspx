@@ -20,7 +20,7 @@
 
 					<div class="item">
 						<label for="confirm">Confirm</label>
-						<input type="password" value="<%=Confirm %>" name="confirm" id="confirm" />
+						<input type="password" value="<%=Confirm %>" name="confirm" id="confirm">
 					</div>
 
 
@@ -67,12 +67,12 @@
 					<div id="credit-card">
 						<div class="item">
 							<label for="ccnum">Credit Card #</label>
-							<input type="text" name="ccnum" id="ccnum">
+							<input type="text" name="ccnum" id="ccnum" value="5434567890123456">
 						</div>
 
 						<div class="item">
 							<label for="ccname">Name On Card</label>
-							<input type="text" name="ccname" id="ccname">
+							<input type="text" name="ccname" id="ccname" value="Ryan D Shaul">
 							<span class="note">(must match profile name)</span>
 						</div>
 

@@ -5,12 +5,12 @@
 		<h1>Secure Your Identity</h1>
 
 		<div id="blurb">
-			with a digital signature using our patented <b>cryptography infinium</b>&trade; technology, so you can rest assured that your identity is safe in the digital sanctuary known as DIG.
+			With the advent of the internet, identity theft has a new face, so to speak. Before the internet, you had to have a convincing alias, a good poker face, and an even more convincing photo ID. However, in the digital age, all you need to steal an identity are a couple pieces of hard-to-verify information, like Name and E-mail Address. DIG attempts to combat this new age of identity theft with a meaningful yet simple form of verifiable identification: the DIG code.
 		</div>
 	</div>
 
 	<div id="movie">
-		<iframe title="YouTube video player" width="640" height="510" src="http://www.youtube.com/embed/l6_lUby_-DU?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+		<iframe title="YouTube video player" width="640" height="510" src="http://www.youtube.com/embed/WzBcR45a-Zc?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 	</div>
 
 	<div id="buttons">
